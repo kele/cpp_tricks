@@ -1,18 +1,12 @@
 #pragma once
 
 template<class T>
-class AnythingWrapper
+struct AnythingWrapper
 {
 public:
     AnythingWrapper(T& value)
-        : m_value(value)
+        : value(value)
     {}
 
-    T& value() const
-    {
-        return m_value;
-    }
-
-private:
-    T& m_value;
+    T& value;
 };

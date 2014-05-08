@@ -44,7 +44,7 @@ void foo(const Anything &arg)
     {
         std::cout << "AnythingWrapper<Env>: ";
 
-        Env &env = arg.value< AnythingWrapper<Env> >().value();
+        Env &env = arg.value< AnythingWrapper<Env> >().value;
         env.changeSomething();
         env.changeSomething();
         env.changeSomething();
