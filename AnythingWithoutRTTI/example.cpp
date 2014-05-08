@@ -54,6 +54,15 @@ void foo(const Anything &arg)
     {
         std::cout << "ETestEnum";
     }
+    else if (arg.isType< boost::reference_wrapper<Env> >())
+    {
+        std::cout << "boost::ref: ";
+
+        boost::reference_wrapper<Env> refWrap = arg.value< boost::reference_wrapper<Env> >();
+        refWrap.get().changeSomething();
+        refWrap.get().changeSomething();
+        refWrap.get().changeSomething();
+    }
     else
     {
         std::cout << "Unkown type!";
@@ -71,6 +80,7 @@ int main()
     Env e;
     foo(AnythingWrapper<Env>(e));
     foo(AnythingWrapper<Env>(e));
+    foo(boost::ref(e));
 
     foo(ESomething1);
     foo(ESomething2);
@@ -80,4 +90,5 @@ int main()
     std::cout << "AnythingWrapper<Env> = " << sizeof(AnythingWrapper<Env>) << std::endl;
     std::cout << "Env = " << sizeof(Env) << std::endl;
     std::cout << "Anything = " << sizeof(Anything) << std::endl;
+    std::cout << "boost::ref<Env> = " << sizeof(boost::reference_wrapper<Env>) << std::endl;
 }
